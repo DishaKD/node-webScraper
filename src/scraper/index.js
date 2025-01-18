@@ -1,10 +1,11 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 const db = require("../config/database");
+require("dotenv").config();
 
 async function scrapeHackerNews() {
   try {
-    const response = await axios.get("https://news.ycombinator.com/");
+    const response = await axios.get(process.env.SCRAPE_URL);
     const $ = cheerio.load(response.data);
     const stories = [];
 
